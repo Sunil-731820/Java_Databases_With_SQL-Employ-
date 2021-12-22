@@ -17,17 +17,11 @@ public class EmployDelete {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/infinitepractice",
 					"root","root");
-			String delete1 = "select * from Employ where Empno=?";
+			String delete1 = "Delete from Employ where Empno=?";
 			PreparedStatement pst = conn.prepareStatement(delete1);
 			pst.setInt(1, Empno);
-			ResultSet res = pst.executeQuery();
-			String changedata = String.valueOf(Empno);
-			if(changedata==delete1) {
-				System.out.println("The Records Are Deleted SuccessFully From the DataBases ...");
-			}
-			else {
-				System.out.println("No Records Are There with given Employ Number .. "+ Empno);
-			}
+			pst.executeUpdate();
+			System.out.println("The records are deleted successfully from the table ");
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

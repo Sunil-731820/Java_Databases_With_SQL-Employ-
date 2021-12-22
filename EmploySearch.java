@@ -11,15 +11,19 @@ public class EmploySearch {
 	public static void main(String[] args) throws SQLException {
 		int Empno ;
 		Scanner sc = new Scanner(System.in);
-		System.out.println("Enter the Employ Number here for Searching ");
+		System.out.println("Enter the Employ Number here for Searching\n ");
 		Empno = sc.nextInt();
 		try {
+//			first Step 1 is : Register with the driver 
 			Class.forName("com.mysql.cj.jdbc.Driver");
+//			second Step 2 is : Getting the Connections Here
 			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/infinitepractice",
 					"root","root");
+//			Third Step is 3: Query Statement 
 			String cmd = "select *from Employ where Empno=?";
 			PreparedStatement pst = conn.prepareStatement(cmd);
 			pst.setInt(1, Empno);
+//			Fourth Step is 4: Query Exceution 
 			ResultSet res = pst.executeQuery();
 			System.out.println("********* After performing the searching operation the Records are **********");
 			if(res.next()) {
